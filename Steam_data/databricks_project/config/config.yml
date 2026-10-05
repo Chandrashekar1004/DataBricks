@@ -1,0 +1,47 @@
+# Project settings for the Steam medallion pipeline (Bronze -> Silver -> Gold)
+
+catalog: steam_data
+schema: default
+
+raw_data:
+  volume_path: /Volumes/steam_data/default/raw_data
+  games_file: steam_games.csv
+  reviews_file: steam_games_reviews.csv
+
+# Pandas read options used for the games CSV (it has malformed rows)
+games_csv_options:
+  encoding: utf-8-sig
+  on_bad_lines: skip
+  engine: python
+
+tables:
+  bronze_games: steam_games
+  bronze_reviews: review
+  silver_games: silver_games
+  game_genres: game_genres
+  game_categories: game_categories
+  gold_games: gold_games
+
+silver:
+  columns_to_keep:
+    - app_id
+    - name
+    - release_date
+    - price
+    - price_status
+    - estimated_owners
+    - genres
+    - categories
+    - positive
+    - negative
+    - recommendations
+    - peak_ccu
+    - metacritic_score
+    - user_score
+    - median_playtime_forever
+    - windows
+    - mac
+    - linux
+
+analysis:
+  min_games_per_group: 30   # groups smaller than this are ignored in genre comparisons

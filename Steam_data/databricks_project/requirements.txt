@@ -1,0 +1,7 @@
+pandas
+pyyaml
+matplotlib
+numpy
+# Local development and tests only. Databricks already provides pyspark and delta.
+pyspark
+pytest
